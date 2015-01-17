@@ -5,6 +5,8 @@ var queryData = {
 var baseUrl = "https://ws.webtrends.com/v3/Reporting/profiles/";
 var currentUrl = "https://ws.webtrends.com/v3/Reporting/profiles/";
 var updateElm = "profile";
+var minDate = '';
+var maxDate = '';
 
 $(document).ready(function () {
   // Bind Login
@@ -13,6 +15,14 @@ $(document).ready(function () {
   $("#profile").change(profileChange);
   // Bind report change
   $("#report").change(reportChange);
+  $("#date_dynamic").change(function () {
+    if ($("#date_dynamic").is(':checked')) {
+      $("#txtAge").show();
+    } else {
+      $("#txtAge").hide();
+    }
+  });
+
 });
 
 // Define other events
@@ -32,14 +42,14 @@ function responseRouter(jsonData) {
     case 'measures':
       // Clear current
       $("#measures").find('option').remove();
-      for (i = 0; i < jsonData.definition.measures.length; i++) {
-        var odv = $('<option></option>').val(jsonData.definition.measures[i].ID).html(jsonData.definition.measures[i].name);
-        $("#measures").append(odv);
-      }
       $("#sortby").find('option').remove();
-      for (i = 0; i < jsonData.definition.measures.length; i++) {
-        var odv = $('<option></option>').val(encodeURIComponent(jsonData.definition.measures[i].name.toLower())).html(jsonData.definition.measures[i].name);
-        $("#sortby").append(odv);
+      var measures = jsonData.definition.measures;
+      for (i = 0; i < measures.length; i++) {
+        var measOpt = $('<option></option>').val(measures[i].ID).html(measures[i].name);
+        $("#measures").append(measOpt);
+
+        var sortOpt = $('<option></option>').val(encodeURIComponent(measures[i].name.toLowerCase())).html(measures[i].name);
+        $("#sortby").append(sortOpt);
       }
       break;
     default:
@@ -108,4 +118,21 @@ function getData() {
     username: user,
     password: $("#pass").val()
   });
+}
+
+function wireDates() {
+  if ($("#start_period").datepicker()) $("#start_period").datepicker("destroy");
+  if ($("#end_period").datepicker()) $("#end_period").datepicker("destroy");
+  switch ($("#date_scope").val()) {
+    case "y":
+
+      break;
+    case "m":
+
+      break;
+    case "d":
+
+      break;
+
+  }
 }

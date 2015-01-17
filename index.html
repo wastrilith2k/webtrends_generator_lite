@@ -28,6 +28,37 @@
             <select id="report">
             </select>
           </div>
+          <div id="date_dynamic_div">
+            <label>Use dynamic dates?</label>
+            <input type="checkbox" value="Yes" id="date_dynamic" />
+          </div>
+          <div id="date_scope_div">
+            <label>Scope of date range?</label>
+            <select id="date_scope">
+              <option value="y">Yearly</option>
+              <option value="m">Monthly</option>
+              <option value="d">Daily</option>
+            </select>
+          </div>
+          <div id="date_dyn_macro_div">
+            <label>Scope of date range?</label>
+            <select id="date_dyn_macro">
+              <option value="CURRENT_HOUR">Current hour</option>
+              <option value="CURRENT_DAY">Current day</option>
+              <option value="CURRENT_DAY_MIDNIGHT">Current day (midnight)</option>
+              <option value="CURRENT_MONTH">Current month</option>
+              <option value="CURRENT_YEAR">Current year</option>
+            </select>
+          </div>
+          <div id="date_dyn_start_div">
+            <label>Offset for start of range</label>
+            <input type="number" id="date_dyn_start" value="-1" />
+          </div>
+          <div id="date_dyn_end_div">
+            <label>Offset for end of range</label>
+            <input type="number" id="date_dyn_end" value="-7" />
+          </div>
+
           <div id="start_period_div">
             <label>Start Period</label>
             <select id="start_period">
