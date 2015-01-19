@@ -32,15 +32,7 @@
             <label>Use dynamic dates?</label>
             <input type="checkbox" value="Yes" id="date_dynamic" />
           </div>
-          <div id="date_scope_div">
-            <label>Scope of date range?</label>
-            <select id="date_scope">
-              <option value="y">Yearly</option>
-              <option value="m">Monthly</option>
-              <option value="d">Daily</option>
-            </select>
-          </div>
-          <div id="date_dyn_macro_div">
+          <div id="date_dyn_macro_div" class="dyn_date">
             <label>Scope of date range?</label>
             <select id="date_dyn_macro">
               <option value="CURRENT_HOUR">Current hour</option>
@@ -50,24 +42,29 @@
               <option value="CURRENT_YEAR">Current year</option>
             </select>
           </div>
-          <div id="date_dyn_start_div">
+          <div id="date_dyn_start_div" class="dyn_date">
             <label>Offset for start of range</label>
             <input type="number" id="date_dyn_start" value="-1" />
           </div>
-          <div id="date_dyn_end_div">
+          <div id="date_dyn_end_div" class="dyn_date">
             <label>Offset for end of range</label>
             <input type="number" id="date_dyn_end" value="-7" />
           </div>
-
-          <div id="start_period_div">
-            <label>Start Period</label>
-            <select id="start_period">
+          <div id="date_scope_div" class="custom_date">
+            <label>Scope of date range?</label>
+            <select id="date_scope">
+              <option value="y">Yearly</option>
+              <option value="m">Monthly</option>
+              <option value="d">Daily</option>
             </select>
           </div>
-          <div id="end_period_div">
+          <div id="start_period_div" class="custom_date">
+            <label>Start Period</label>
+            <input type="text" id="start_period" class="date-picker" />
+          </div>
+          <div id="end_period_div" class="custom_date">
             <label>End Period</label>
-            <select id="end_period">
-            </select>
+            <input type="text" id="end_period" class="date-picker" />
           </div>
           <div id="format_div">
             <label>Format</label>

@@ -8,21 +8,27 @@ var updateElm = "profile";
 var minDate = '';
 var maxDate = '';
 
-$(document).ready(function () {
-  // Bind Login
-  $("#loginsubmit").click(loginInit);
-  // Bind profile change
-  $("#profile").change(profileChange);
-  // Bind report change
-  $("#report").change(reportChange);
-  $("#date_dynamic").change(function () {
-    if ($("#date_dynamic").is(':checked')) {
-      $("#txtAge").show();
-    } else {
-      $("#txtAge").hide();
-    }
-  });
-
+$(document).ready(function ()
+{
+    // Bind Login
+    $("#loginsubmit").click(loginInit);
+    // Bind profile change
+    $("#profile").change(profileChange);
+    // Bind report change
+    $("#report").change(reportChange);
+    $("#date_dynamic").change(function ()
+    {
+        if ($("#date_dynamic").is(':checked'))
+        {
+            $(".dyn_date").show();
+            $(".custom_date").hide();
+        } else
+        {
+            $(".dyn_date").hide();
+            $(".custom_date").show();
+        }
+    });
+    $("#date_scope").change(wireDates);
 });
 
 // Define other events
@@ -125,13 +131,42 @@ function wireDates() {
   if ($("#end_period").datepicker()) $("#end_period").datepicker("destroy");
   switch ($("#date_scope").val()) {
     case "y":
-
+      $('.date-picker').datepicker( {
+        changeYear: true,
+        showButtonPanel: true,
+        dateFormat: 'yy',
+        onClose: function(dateText, inst) { 
+            var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+            $(this).datepicker('setDate', new Date(year, 1, 1));
+        }
+      });
       break;
     case "m":
-
+      $('.date-picker').datepicker( {
+        changeMonth: true,
+        changeYear: true,
+        showButtonPanel: true,
+        dateFormat: 'yy mm',
+        onClose: function(dateText, inst) { 
+            var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+            var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+            $(this).datepicker('setDate', new Date(year, month, 1));
+        }
+      });
       break;
     case "d":
-
+      $('.date-picker').datepicker( {
+        changeMonth: true,
+        changeYear: true,
+        showButtonPanel: true,
+        dateFormat: 'yy mm dd',
+        onClose: function(dateText, inst) { 
+            var day = $("#ui-datepicker-div .ui-datepicker-day :selected").val();
+            var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+            var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+            $(this).datepicker('setDate', new Date(year, month, day));
+        }
+      });
       break;
 
   }
